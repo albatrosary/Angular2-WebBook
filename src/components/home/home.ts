@@ -7,11 +7,12 @@ import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core'
       <canvas id="pageflip-canvas"></canvas>
       <div id="pages">
         <section *ngFor="let item of contents">
-          <h2>{{item.title}}</h2>
+          <!-- <h2>{{item.title}}</h2>
           <div>
             <h2>{{item.subtitle}}</h2>
             <p>{{item.section}}</p>
-          </div>
+          </div> -->
+          <div><img src="{{item.src}}" style="width: 100%; height: 100%"></div>
         </section>
       </div>
     </div>
@@ -34,7 +35,7 @@ import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core'
       height:  500px;
       position: absolute;
       left: 415px;
-      top: 5px;
+      top: 10px;
       overflow: hidden;
     }
     #pages section>div {
@@ -57,7 +58,8 @@ import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core'
       position: absolute;
       z-index: 100;
     }
-  `]
+  `],
+  directives: []
 })
 
 
@@ -91,20 +93,28 @@ export class AppComponent implements OnInit, AfterViewInit {
   private pages: any;
 
   constructor () {
-    this.contents = [{
-      title: 'ページ１',
-      subtitle: '',
-      section: '最近は、ワールド ワイド ウェブを使って世界中の情報を簡単に入手できるようになりました。世界中のいろいろな人と知り合うこともできるし、他の国の出来事も瞬時に伝わってきます',
-    },{
-      title: 'ページ２',
-      subtitle: 'ページ２',
-      section: '最近は、ワールド ワイド ウェブを使って世界中の情報を簡単に入手できるようになりました。世界中のいろいろな人と知り合うこともできるし、他の国の出来事も瞬時に伝わってきます',
-    },{
-      title: '20thingsilearned.com',
-      subtitle: '',
-      section: '<a href="http://www.html5rocks.com/ja/tutorials/casestudies/20things_pageflip/">20thingsilearned.com</a>',
-    }];
-  }
+   this.contents = [
+     {src: 'pages/01.jpg'},
+     {src: 'pages/02.jpg'},
+     {src: 'pages/03.jpg'},
+     {src: 'pages/04.jpg'},
+     {src: 'pages/05.jpg'},
+     {src: 'pages/06.jpg'}
+  ]
+  //   this.contents = [{
+  //     title: 'ページ１',
+  //     subtitle: '',
+  //     section: '最近は、ワールド ワイド ウェブを使って世界中の情報を簡単に入手できるようになりました。世界中のいろいろな人と知り合うこともできるし、他の国の出来事も瞬時に伝わってきます',
+  //   },{
+  //     title: 'ページ２',
+  //     subtitle: 'ページ２',
+  //     section: '最近は、ワールド ワイド ウェブを使って世界中の情報を簡単に入手できるようになりました。世界中のいろいろな人と知り合うこともできるし、他の国の出来事も瞬時に伝わってきます',
+  //   },{
+  //     title: '20thingsilearned.com',
+  //     subtitle: '',
+  //     section: '<a href="http://www.html5rocks.com/ja/tutorials/casestudies/20things_pageflip/">20thingsilearned.com</a>',
+  //   }];
+   }
 
   ngOnInit() {
   	this.canvas = <HTMLCanvasElement>document.getElementById("pageflip-canvas");
