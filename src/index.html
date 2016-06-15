@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>Document</title>
+  </head>
+  <style>
+    body, h2, p {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #444;
+      color: #333;
+      font-family: Helvetica, sans-serif;
+    }
+  </style>
+  <body>
+    <!-- 1. Display the application -->
+    <my-app>Loading...</my-app>
+    
+    <!-- 2. Load libraries -->
+    <script src="node_modules/es6-shim/es6-shim.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+
+    <!-- 3. Configure SystemJS -->
+    <script>
+    System.import('system-config.js')
+      .then(function () {
+        System.import('scripts/main');
+      })
+      .catch(console.error.bind(console));
+    </script>
+  </body>
+</html>
