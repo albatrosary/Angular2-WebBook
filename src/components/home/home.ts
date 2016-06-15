@@ -34,22 +34,6 @@ import {PageComponent} from './detail'
       top: 10px;
       overflow: hidden;
     }
-    book-detail>div {
-      display: block;
-      width: 400px;
-      height: 500px;
-      font-size: 12px;
-    }
-    book-detail p,
-    book-detail h2 {
-      padding: 3px 35px;
-      line-height: 1.4em;
-      text-align: justify;
-    }
-    book-detail h2{
-      margin: 15px 0 10px;
-    }
-
     #pageflip-canvas {
       position: absolute;
       z-index: 100;
