@@ -1,4 +1,5 @@
 import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core'
+import {PageComponent} from './detail'
 
 @Component({
   selector: 'my-app',
@@ -6,14 +7,9 @@ import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core'
     <div id="book">
       <canvas id="pageflip-canvas"></canvas>
       <div id="pages">
-        <section *ngFor="let item of contents">
-          <!-- <h2>{{item.title}}</h2>
-          <div>
-            <h2>{{item.subtitle}}</h2>
-            <p>{{item.section}}</p>
-          </div> -->
-          <div><img src="{{item.src}}" style="width: 100%; height: 100%"></div>
-        </section>
+        <book-detail *ngFor="let item of contents"
+         book-data="{{item.src}}">
+        </book-detail>
       </div>
     </div>
     `,
@@ -28,29 +24,29 @@ import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core'
       margin-left: -400px;
       margin-top: -250px;
     }
-    #pages section {
+    book-detail {
       background: url("paper.png") no-repeat;
       display: block;
       width: 400px;
-      height:  500px;
+      height: 500px;
       position: absolute;
       left: 415px;
       top: 10px;
       overflow: hidden;
     }
-    #pages section>div {
+    book-detail>div {
       display: block;
       width: 400px;
       height: 500px;
       font-size: 12px;
     }
-    #pages section p,
-    #pages section h2 {
+    book-detail p,
+    book-detail h2 {
       padding: 3px 35px;
       line-height: 1.4em;
       text-align: justify;
     }
-    #pages section h2{
+    book-detail h2{
       margin: 15px 0 10px;
     }
 
@@ -59,7 +55,7 @@ import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core'
       z-index: 100;
     }
   `],
-  directives: []
+  directives: [PageComponent]
 })
 
 
@@ -123,7 +119,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.book = document.getElementById( "book" );
     
     // List of all the page elements in the DOM
-    this.pages = this.book.getElementsByTagName( "section" );
+    this.pages = this.book.getElementsByTagName("book-detail");
   }
 
   ngAfterViewInit () {
