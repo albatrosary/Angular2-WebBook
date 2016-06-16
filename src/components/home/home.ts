@@ -264,6 +264,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.context.fill();
     
     // Gradient applied to the folded paper (highlights & shadows)
+    // ページめくり時のグラデーションを定義
     let foldGradient = this.context.createLinearGradient(foldX - paperShadowWidth, 0, foldX, 0);
     foldGradient.addColorStop(0.35, '#fafafa');
     foldGradient.addColorStop(0.73, '#eeeeee');
@@ -286,6 +287,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.context.stroke();
 
     this.context.restore();
+    console.log(this.context);
   }
 }
 　

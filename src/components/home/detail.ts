@@ -17,7 +17,7 @@ import {Component, Input} from '@angular/core'
       line-height: 1.4em;
       text-align: justify;
     }
-    h2{
+    h2 {
       margin: 15px 0 10px;
     }`]
 })
