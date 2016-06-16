@@ -1,5 +1,6 @@
-import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core'
-import {PageComponent} from './detail'
+import {Component, AfterViewInit, OnInit, HostListener} from '@angular/core';
+import {NgClass} from '@angular/common';
+import {PageComponent} from './detail';
 
 @Component({
   selector: 'my-app',
@@ -39,7 +40,7 @@ import {PageComponent} from './detail'
       z-index: 100;
     }
   `],
-  directives: [PageComponent]
+  directives: [PageComponent, NgClass]
 })
 
 
@@ -287,7 +288,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.context.stroke();
 
     this.context.restore();
-    console.log(this.context);
   }
 }
 　
