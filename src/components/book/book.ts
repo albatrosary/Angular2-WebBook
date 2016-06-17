@@ -5,7 +5,7 @@ import {PageComponent} from './detail';
 import {CurrentBook} from '../shared/current-book';
 
 @Component({
-  selector: ' book-app',
+  selector: 'book-app',
   template: `
     <div id="book">
       <canvas></canvas>
@@ -90,7 +90,6 @@ export class BookComponent implements OnInit, AfterViewInit {
     private currentBook: CurrentBook
   ) {
     this.route.params.subscribe(params => {
-      console.log(params.id);
       this.contents = currentBook.getBook(params.id);
     });
     
