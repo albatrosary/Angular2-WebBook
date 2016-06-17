@@ -101,15 +101,12 @@ export class BookComponent implements OnInit, AfterViewInit {
     this.context = this.canvas.getContext( "2d" );
 
     this.book = document.getElementById( "book" );
-    
-    // List of all the page elements in the DOM
-    // this.pages = this.book.getElementsByTagName("book-detail");
-    // console.log('this.pages', this.pages);
   }
 
   ngAfterViewInit () {
+    // List of all the page elements in the DOM
     this.pages = document.querySelectorAll('book-detail');
-    console.log(this.pages);
+    
     // Organize the depth of our pages and create the flip definitions
     for( let i = 0, len = this.pages.length; i < len; i++ ) {
       this.pages[i].style.zIndex = String(len - i);

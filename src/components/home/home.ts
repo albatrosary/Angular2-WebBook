@@ -6,8 +6,8 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   selector: 'my-app',
   template: `
     <ul>
-      <li><a [routerLink]="['/books', 'pique']"><img src="pages/pique/01.jpg"></a></li>
-      <li><a [routerLink]="['/books', 'angular2']"><img src="pages/angular2/01-1.png"></a></li>
+      <li><a [routerLink]="['/pique', 'pique']"><img src="pages/pique/01.jpg"></a></li>
+      <li><a [routerLink]="['/angular2', 'angular2']"><img src="pages/angular2/01-1.png"></a></li>
     </ul>
     <router-outlet></router-outlet>
   `,
