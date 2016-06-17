@@ -1,2 +1,2 @@
-export {AppComponent} from './home/home';
-export {APP_ROUTER_PROVIDERS} from './app.routes';
+export {AppComponent} from './app/app';
+export {APP_ROUTER_PROVIDERS} from './app/app.routes';
