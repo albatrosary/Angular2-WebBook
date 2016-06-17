@@ -1,5 +1,5 @@
 import {Component, AfterViewInit, OnInit, HostListener, Input} from '@angular/core';
-import {RouteParams} from '@angular/router-deprecated';
+import {ActivatedRoute} from '@angular/router';
 
 import {PageComponent} from './detail';
 import {CurrentBook} from '../shared/current-book';
@@ -8,7 +8,7 @@ import {CurrentBook} from '../shared/current-book';
   selector: ' book-app',
   template: `
     <div id="book">
-      <canvas id="pageflip-canvas"></canvas>
+      <canvas></canvas>
       <div id="pages">
         <book-detail *ngFor="let item of contents"
          book-data="{{item.src}}">
@@ -47,9 +47,9 @@ import {CurrentBook} from '../shared/current-book';
       top: 10px;
       overflow: hidden;
     }
-    #pageflip-canvas {
+    canvas {
       position: absolute;
-      z-index: 100;
+      z-index: 10;
     }
   `],
   directives: [PageComponent],
@@ -86,24 +86,27 @@ export class BookComponent implements OnInit, AfterViewInit {
   private pages: any;
 
   constructor (
-    private routeParams: RouteParams,
+    private route: ActivatedRoute,
     private currentBook: CurrentBook
   ) {
-    let id = this.routeParams.get('id');
-    this.contents = currentBook.getBook(id);
+    this.route.params.subscribe(params => {
+      console.log(params.id);
+      this.contents = currentBook.getBook(params.id);
+    });
+    
   }
 
   ngOnInit() {
-  	this.canvas = <HTMLCanvasElement>document.getElementById("pageflip-canvas");
+    this.canvas = <HTMLCanvasElement>document.querySelector('canvas');
     this.context = this.canvas.getContext( "2d" );
 
     this.book = document.getElementById( "book" );
-    
-    // List of all the page elements in the DOM
-    this.pages = this.book.getElementsByTagName("book-detail");
   }
 
   ngAfterViewInit () {
+    // List of all the page elements in the DOM
+    this.pages = document.querySelectorAll('book-detail');
+    
     // Organize the depth of our pages and create the flip definitions
     for( let i = 0, len = this.pages.length; i < len; i++ ) {
       this.pages[i].style.zIndex = String(len - i);
@@ -151,6 +154,9 @@ export class BookComponent implements OnInit, AfterViewInit {
         // We are on the right side, drag the current page
         this.flips[this.page].dragging = true;
       }
+      else {
+
+      }
     }
     
     // Prevents the text selection
@@ -192,6 +198,7 @@ export class BookComponent implements OnInit, AfterViewInit {
       flip.progress += ( flip.target - flip.progress ) * 0.2;
       
       // If the flip is being dragged or is somewhere in the middle of the book, render it
+      
       if( flip.dragging || Math.abs( flip.progress ) < 0.997 ) {
         this.drawFlip( flip );
       }
